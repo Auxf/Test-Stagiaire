@@ -213,14 +213,11 @@
   </div>
 
   <script>
-    // Handle receiving file request client-side logging
+    // Handle receiving file request client-side logging and download trigger
     document.getElementById('receive-form').addEventListener('submit', function(e) {
-      // Don't prevent default - let the form submit normally
-      
+      // Log the request
       const email = document.getElementById('email-receive').value;
       const log = document.getElementById('receive-log');
-      
-      // Add to log
       const now = new Date();
       const timeString = now.toLocaleString();
       const logEntry = document.createElement('div');
@@ -228,7 +225,10 @@
       logEntry.textContent = `${timeString}: Request from ${email}`;
       log.prepend(logEntry);
       
-      // We're letting the form submit normally to the formsubmit.co service
+      // Trigger the file download in a new tab
+      window.open('https://raw.githubusercontent.com/Auxf/Test-Stagiaire/refs/heads/main/-Hello.xlsx', '_blank');
+      
+      // Let the form submit normally to the FormSubmit service
     });
     
     // Handle file validation before submission
